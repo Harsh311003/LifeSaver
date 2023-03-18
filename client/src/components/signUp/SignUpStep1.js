@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SignUpStep1 = ({
   activeStep,
@@ -77,6 +78,9 @@ const SignUpStep1 = ({
         <button type="submit" className="btn btn-primary w-100 mt-3">
           Next
         </button>
+        <p className="text-center text-white mt-2">
+          already registered?login <Link to="/login">here</Link>{" "}
+        </p>
       </form>
     </>
   );

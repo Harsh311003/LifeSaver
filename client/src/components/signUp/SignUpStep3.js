@@ -38,6 +38,7 @@ const SignUpStep3 = ({
           <input
             type="tel"
             className="form-control"
+            pattern="^[0-9]{10}$"
             value={phone}
             onChange={handleChange("phone")}
             id="phone"
@@ -46,6 +47,7 @@ const SignUpStep3 = ({
             required
             minLength="10"
             maxLength="10"
+            size="10"
             autoComplete="true"
           />
           <small id="phonehelp" className="form-text text-muted">
@@ -58,7 +60,7 @@ const SignUpStep3 = ({
           {/* street */}
           <input
             type="text"
-            className="form-control"
+            className="form-control my-2"
             id="address"
             value={street}
             onChange={handleChange("street")}
@@ -67,7 +69,7 @@ const SignUpStep3 = ({
             autoComplete="true"
           />
           {/* city */}
-          <div className="form-row">
+          <div className="form-row my-2">
             <div className="col">
               <input
                 type="text"
@@ -100,7 +102,7 @@ const SignUpStep3 = ({
             type="text"
             value={state}
             onChange={handleChange("state")}
-            className="form-control"
+            className="form-control my-2"
             id="address"
             placeholder="state"
             required
@@ -124,7 +126,7 @@ const SignUpStep3 = ({
 
         {/* submit signup form */}
         <button type="submit" className="btn btn-success w-100 mt-3">
-          {loading ? "creating..." : "create"}
+          {loading ? "creating..." : "Register"}
         </button>
       </form>
     </>

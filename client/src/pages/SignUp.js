@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { registerUser } from "../apiCalls/auth";
-import SignUpStep1 from "../components/SignUp/SignUpStep1";
-import SignUpStep2 from "../components/SignUp/SignUpStep2";
-import SignUpStep3 from "../components/SignUp/SignUpStep3";
+import SignUpStep1 from "../components/signUp/SignUpStep1";
+import SignUpStep2 from "../components/signUp/SignUpStep2";
+import SignUpStep3 from "../components/signUp/SignUpStep3";
 import Base from "./Base";
 import LoginPageImg1 from "../img/signup1.svg";
 import LoginPageImg2 from "../img/signup2.svg";

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const LoginForm = ({
   userDetails,
@@ -58,6 +59,9 @@ export const LoginForm = ({
       <button type="submit" className="btn btn-primary w-100">
         {loading ? "logging you in...." : "login"}
       </button>
+      <p className="text-center text-white mt-2">
+        not having an account?register <Link to="/signup">here</Link>
+      </p>
     </form>
   );
 };
