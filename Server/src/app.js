@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname + "../public")));
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/ambulance", ambulanceRouter);
+
 // Catching 404 Not Found Error
 app.use(function (req, res, next) {
   res.status(404);
