@@ -12,7 +12,7 @@ var LocalPassportSetup = require("./config/passport-local");
 
 // importing routers
 var authRouter = require("./routers/auth");
-
+var ambulanceRouter = require("./routers/ambulanceRouter/index");
 var corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200, // some legacy borwsers choke on 204 (IE11 & various SmartTVs)
@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname + "../public")));
 
 app.use("/auth", authRouter);
-
+app.use("/ambulance", ambulanceRouter);
 // Catching 404 Not Found Error
 app.use(function (req, res, next) {
   res.status(404);
