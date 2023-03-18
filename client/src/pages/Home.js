@@ -1,9 +1,12 @@
 import React from "react";
+import Base from "./Base";
 
 const Home = () => {
   return (
     <div>
-      <h1>home page</h1>
+      <Base title="Home">
+        <h1>home page</h1>
+      </Base>
     </div>
   );
 };
