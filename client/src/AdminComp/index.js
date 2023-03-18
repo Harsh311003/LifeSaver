@@ -8,12 +8,6 @@ import {
   AmbulanceList,
   AmbulanceShow,
 } from "./Ambulance";
-import {
-  DiseaseCreate,
-  DiseaseEdit,
-  DiseaseList,
-  DiseaseShow,
-} from "./Disease";
 
 export default function AdminComp() {
   return (
@@ -25,13 +19,6 @@ export default function AdminComp() {
           create={AmbulanceCreate}
           show={AmbulanceShow}
           edit={AmbulanceEdit}
-        />
-        <Resource
-          name="disease"
-          list={DiseaseList}
-          create={DiseaseCreate}
-          show={DiseaseShow}
-          edit={DiseaseEdit}
         />
       </Admin>
     </div>
