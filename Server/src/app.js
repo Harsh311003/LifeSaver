@@ -1,22 +1,36 @@
 require("dotenv").config();
+require("./config/db");
 
 var express = require("express");
 var http = require("http");
 var path = require("path");
+var cors = require("cors");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
+var passport = require("passport");
+var LocalPassportSetup = require("./config/passport-local");
+
+// importing routers
+var authRouter = require("./routers/auth");
+
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200, // some legacy borwsers choke on 204 (IE11 & various SmartTVs)
+};
 
 // creating express server
 var app = express();
-const server = http.createServer(app);
-var PORT = process.env.PORT || 8000;
 
 // middlewares
+app.use(cors(corsOptions));
+app.use(passport.initialize());
 app.use(cookieParser());
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname + "../public")));
+
+app.use("/auth", authRouter);
 
 // Catching 404 Not Found Error
 app.use(function (req, res, next) {
@@ -35,6 +49,9 @@ app.use(function (err, req, res, next) {
     success: false,
   });
 });
+
+const server = http.createServer(app);
+var PORT = process.env.PORT || 8000;
 
 server.listen(PORT, () => {
   console.log(`Server Listening On Port ${PORT}`);
