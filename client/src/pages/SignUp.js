@@ -8,6 +8,7 @@ import Base from "./Base";
 import LoginPageImg1 from "../img/signup1.svg";
 import LoginPageImg2 from "../img/signup2.svg";
 import LoginPageImg3 from "../img/signup3.svg";
+import { hasAuthTokenInLocalStorage } from "../helper";
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -72,7 +73,13 @@ const SignUp = () => {
       <Base>
         <div className="row p-4">
           <div className="col-md-5 col-sm-10 offset-md-1 p-4 bg-dark rounded ">
+            {/* when signup success redirect to login page */}
             {success && <Redirect to="/login" />}
+
+            {/* if user is already logged in redirect to dashboard directly */}
+            {hasAuthTokenInLocalStorage() && <Redirect to="/userdashboard" />}
+
+            {/* step1 of signup form */}
             {activeStep === 0 ? (
               <SignUpStep1
                 activeStep={activeStep}
@@ -81,6 +88,8 @@ const SignUp = () => {
                 handleChange={handleChange}
               />
             ) : undefined}
+
+            {/* step2 of signup form */}
             {activeStep === 1 ? (
               <SignUpStep2
                 activeStep={activeStep}
@@ -89,6 +98,8 @@ const SignUp = () => {
                 handleChange={handleChange}
               />
             ) : undefined}
+
+            {/* step3 of signup form */}
             {activeStep === 2 ? (
               <SignUpStep3
                 activeStep={activeStep}
@@ -102,6 +113,8 @@ const SignUp = () => {
               />
             ) : undefined}
           </div>
+
+          {/* these images changes as per the step */}
           <div className="col-md col-sm-10 d-none d-md-flex justify-content-center align-items-center">
             <img src={getActiveImg()} alt="nice svg" />
           </div>
