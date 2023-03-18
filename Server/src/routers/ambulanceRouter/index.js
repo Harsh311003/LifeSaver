@@ -1,13 +1,13 @@
 // Base URL :- /user
 
 const express = require("express");
-const { isSignedIn, isVerified } = require("../../middleware");
+const { isSignedIn, isVerified, isAdmin } = require("../../middleware");
 const ambulanceRouter = express.Router();
 const Ambulance = require("../../models/ambulance");
 var { body } = require("express-validator");
 const { errHandler } = require("../errValidator");
 
-ambulanceRouter.get("/", isSignedIn, (req, res) => {
+ambulanceRouter.get("/", isSignedIn, isAdmin, (req, res) => {
   res.setHeader("Content-Range", "ambulance 0-10/20");
   res.setHeader("Access-Control-Expose-Headers", "Content-Range");
 
@@ -20,7 +20,7 @@ ambulanceRouter.get("/", isSignedIn, (req, res) => {
     return res.json(ambulances.map((a) => a.transform()));
   });
 });
-ambulanceRouter.get("/:id", isSignedIn, (req, res) => {
+ambulanceRouter.get("/:id", isSignedIn, isAdmin, (req, res) => {
   Ambulance.findOne({ _id: req.params.id }).exec((err, ambulance) => {
     if (err) {
       return res.status(400).json({
@@ -39,7 +39,7 @@ ambulanceRouter.post(
   ],
   errHandler,
   isSignedIn,
-
+  isAdmin,
   (req, res) => {
     const ambulance = new Ambulance(req.body);
     ambulance.save((err, savedAmbulance) => {
@@ -61,7 +61,7 @@ ambulanceRouter.put(
   ],
   errHandler,
   isSignedIn,
-
+  isAdmin,
   (req, res) => {
     Ambulance.findOne({ _id: req.params.id }).exec((err, ambulance) => {
       if (err) {
@@ -84,7 +84,7 @@ ambulanceRouter.put(
     });
   }
 );
-ambulanceRouter.delete("/:id", isSignedIn, (req, res) => {
+ambulanceRouter.delete("/:id", isSignedIn, isAdmin, (req, res) => {
   Ambulance.findByIdAndDelete(req.params.id, (err, deletedAmbulance) => {
     if (err) {
       return res.status(400).json({

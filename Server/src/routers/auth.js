@@ -59,6 +59,9 @@ authRouter.post(
   errHandler,
   adminLogin
 );
+authRouter.post("/admin/isAdmin", isSignedIn, isAdmin, (req, res) => {
+  res.json({ message: "admin authorized successfully !" });
+});
 // doctor register - FOR ADMINS ONLY
 authRouter.post(
   "/doc/register",
