@@ -15,13 +15,13 @@ const Base = ({ title = "HealthyU", children }) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="#">
-                Features
+              <Link className="nav-link" to="/login">
+                Login
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="#">
-                Pricing
+              <Link className="nav-link" to="/signup">
+                SignUp
               </Link>
             </li>
           </ul>

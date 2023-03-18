@@ -16,14 +16,14 @@ const Map = ({ lng, setLng, lat, setLat, zoom, setZoom }) => {
 
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
-    map.on("move", () => {
-      setLng(map.getCenter().lng.toFixed(4));
-      setLat(map.getCenter().lat.toFixed(4));
-      setZoom(map.getZoom().toFixed(2));
-    });
+    // map.on("move", () => {
+    //   setLng(map.getCenter().lng.toFixed(4));
+    //   setLat(map.getCenter().lat.toFixed(4));
+    //   setZoom(map.getZoom().toFixed(2));
+    // });
 
     return () => map.remove();
-  }, [lng, lat]);
+  }, [lat, lng]);
 
   return (
     <div className="map-container container-fluid" ref={mapContainerRef} />
