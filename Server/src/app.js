@@ -9,12 +9,16 @@ var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var passport = require("passport");
 var LocalPassportSetup = require("./config/passport-local");
+var { socketServer } = require("./socket/io");
 
 // importing routers
 var authRouter = require("./routers/auth");
+var userRouter = require("./routers/user");
+var ambulanceRouter = require("./routers/ambulanceRouter/index");
 
 var corsOptions = {
-  origin: "http://localhost:3000",
+  // origin: "http://localhost:3000",
+  origin: "*",
   optionsSuccessStatus: 200, // some legacy borwsers choke on 204 (IE11 & various SmartTVs)
 };
 
@@ -31,7 +35,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname + "../public")));
 
 app.use("/auth", authRouter);
-
+app.use("/user", userRouter);
+app.use("/ambulance", ambulanceRouter);
 // Catching 404 Not Found Error
 app.use(function (req, res, next) {
   res.status(404);
@@ -52,6 +57,14 @@ app.use(function (err, req, res, next) {
 
 const server = http.createServer(app);
 var PORT = process.env.PORT || 8000;
+
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    credentials: true,
+  },
+});
+socketServer(io);
 
 server.listen(PORT, () => {
   console.log(`Server Listening On Port ${PORT}`);
