@@ -13,6 +13,7 @@ var { socketServer } = require("./socket/io");
 
 // importing routers
 var authRouter = require("./routers/auth");
+var userRouter = require("./routers/user");
 var ambulanceRouter = require("./routers/ambulanceRouter/index");
 
 var corsOptions = {
@@ -34,8 +35,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname + "../public")));
 
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
 app.use("/ambulance", ambulanceRouter);
-
 // Catching 404 Not Found Error
 app.use(function (req, res, next) {
   res.status(404);
