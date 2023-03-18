@@ -14,7 +14,8 @@ var { socketServer } = require("./socket/io");
 // importing routers
 var authRouter = require("./routers/auth");
 var userRouter = require("./routers/user");
-var ambulanceRouter = require("./routers/ambulanceRouter/index");
+var ambulanceRouter = require("./routers/ambulanceRouter");
+const diseaseRouter = require("./routers/diseaseRouter");
 
 var corsOptions = {
   // origin: "http://localhost:3000",
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname + "../public")));
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/ambulance", ambulanceRouter);
+app.use("/disease", diseaseRouter);
 
 // Catching 404 Not Found Error
 app.use(function (req, res, next) {
