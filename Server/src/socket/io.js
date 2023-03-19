@@ -28,6 +28,9 @@ exports.socketServer = (io) => {
 
     socket.on("sendLocation", (location, cb) => {
       updateLocation(socket.id, location);
+
+      console.log(connectedAmbulances);
+
       socket.broadcast.emit("driversLocation", {
         ambulances: connectedAmbulances,
       });
