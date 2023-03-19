@@ -1,11 +1,11 @@
 // Base URL :- /user
 
 const express = require("express");
-const { isSignedIn, isVerified, isAdmin } = require("../../middleware");
+const { isSignedIn, isVerified, isAdmin } = require("../middleware");
 const ambulanceRouter = express.Router();
-const Ambulance = require("../../models/ambulance");
+const Ambulance = require("../models/ambulance");
 var { body } = require("express-validator");
-const { errHandler } = require("../errValidator");
+const { errHandler } = require("./errValidator");
 
 ambulanceRouter.get("/", isSignedIn, isAdmin, (req, res) => {
   res.setHeader("Content-Range", "ambulance 0-10/20");

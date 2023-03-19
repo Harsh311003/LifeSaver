@@ -12,6 +12,7 @@ import { UserProvider } from "./Contexts/UserContext";
 import SignUp from "./pages/SignUp";
 import AdminComp from "./AdminComp";
 import PageNotFound from "./pages/PageNotFound";
+import PrivateRoute from "./helper";
 
 function App() {
   return (
@@ -21,16 +22,20 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/admin" component={AdminComp} />
-        <Route path="/" component={PageNotFound} />
         <SocketProvider>
           <DriverProvider>
             <Route exact path="/driverdashboard" component={DriverDashboard} />
             <Route exact path="/driverlogin" component={DriverLogin} />
           </DriverProvider>
           <UserProvider>
-            <Route exact path="/userdashboard" component={UserDashboard} />
+            <PrivateRoute
+              exact
+              path="/userdashboard"
+              component={UserDashboard}
+            />
           </UserProvider>
         </SocketProvider>
+        <Route path="/" component={PageNotFound} />
       </Switch>
     </Router>
   );

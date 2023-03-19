@@ -14,6 +14,9 @@ var { socketServer } = require("./socket/io");
 // importing routers
 var authRouter = require("./routers/auth");
 var userRouter = require("./routers/user");
+var driverRouter = require("./routers/driver");
+var docRouter = require("./routers/doc");
+var ambulanceRouter = require("./routers/ambulanceRouter");
 var ambulanceRouter = require("./routers/ambulanceRouter");
 const diseaseRouter = require("./routers/diseaseRouter");
 
@@ -37,6 +40,8 @@ app.use(express.static(path.join(__dirname + "../public")));
 
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
+app.use("/driver", driverRouter);
+app.use("/doc", docRouter);
 app.use("/ambulance", ambulanceRouter);
 app.use("/disease", diseaseRouter);
 
