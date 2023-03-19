@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Base from "./Base";
 import Map from "../components/Map";
+import { API } from "../config/backend";
+import socketioclient from "socket.io-client/dist/socket.io";
 
 const Home = () => {
   // states
   const [lng, setLng] = useState(80.9462);
   const [lat, setLat] = useState(26.8467);
   const [zoom, setZoom] = useState(16);
+  const socket = socketioclient(API);
 
   //functions
 
@@ -68,6 +71,7 @@ const Home = () => {
             setLat={setLat}
             zoom={zoom}
             setZoom={setZoom}
+            socket={socket}
           />
           {/* map component end */}
 
