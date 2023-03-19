@@ -1,12 +1,12 @@
 var express = require("express");
-var { isSignedIn, isDoctor, isAdmin } = require("../middleware");
+var { isSignedIn, isDriver, isAdmin } = require("../middleware");
 var {
   getDoctorOwnDetails,
   getDoctorDetails,
   getAllDoctors,
   editDoctorDetails,
   deleteDoctor,
-} = require("../services/driverDetails");
+} = require("../services/docDetails");
 
 var docRouter = express.Router();
 

@@ -37,7 +37,7 @@ exports.getAllDoctors = (req, res) => {
 };
 
 // getting doctor details by admin
-exports.getDriverDetails = (req, res) => {
+exports.getDoctorDetails = (req, res) => {
   Doctor.findById(req.params.doctorId)
     .then((doctor) => {
       if (!doctor) {

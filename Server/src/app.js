@@ -16,7 +16,7 @@ var authRouter = require("./routers/auth");
 var userRouter = require("./routers/user");
 var driverRouter = require("./routers/driver");
 var docRouter = require("./routers/doc");
-var ambulanceRouter = require("./routers/ambulanceRouter/index");
+var ambulanceRouter = require("./routers/ambulanceRouter");
 var ambulanceRouter = require("./routers/ambulanceRouter");
 const diseaseRouter = require("./routers/diseaseRouter");
 
