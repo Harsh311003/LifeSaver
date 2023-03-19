@@ -21,7 +21,6 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/admin" component={AdminComp} />
-        <Route path="/" component={PageNotFound} />
         <SocketProvider>
           <DriverProvider>
             <Route exact path="/driverdashboard" component={DriverDashboard} />
@@ -31,6 +30,7 @@ function App() {
             <Route exact path="/userdashboard" component={UserDashboard} />
           </UserProvider>
         </SocketProvider>
+        <Route path="/" component={PageNotFound} />
       </Switch>
     </Router>
   );
