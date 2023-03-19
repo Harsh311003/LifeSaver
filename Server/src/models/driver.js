@@ -2,10 +2,9 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var crypto = require("crypto");
 
-var Doctor = new Schema(
+var Driver = new Schema(
   {
-    licId: {
-      // doctor's license id
+    adhaar: {
       type: String,
       unique: true,
       required: true,
@@ -16,7 +15,9 @@ var Doctor = new Schema(
     phone: {
       type: String,
     },
-    prevPatients: [{ type: String }],
+    dLicId: {
+      type: String,
+    },
     salt: {
       type: String,
     },
@@ -27,13 +28,13 @@ var Doctor = new Schema(
   { timestamps: true }
 );
 
-Doctor.virtual("password").set(function (password) {
+Driver.virtual("password").set(function (password) {
   this._password = password;
   this.salt = crypto.randomBytes(50).toString("hex");
   this.encry_password = this.securePassword(password);
 });
 
-Doctor.methods = {
+Driver.methods = {
   authenticate: function (password) {
     return this.securePassword(password) === this.encry_password;
   },
@@ -56,4 +57,4 @@ Doctor.methods = {
   },
 };
 
-module.exports = mongoose.model("Doctor", Doctor);
+module.exports = mongoose.model("Driver", Driver);
