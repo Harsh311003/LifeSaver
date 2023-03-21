@@ -1,5 +1,5 @@
 var express = require("express");
-var { isSignedIn, isDriver, isAdmin } = require("../middleware");
+var { isSignedIn, isAdmin, isDoctor } = require("../middleware");
 var {
   getDoctorOwnDetails,
   getDoctorDetails,
@@ -10,13 +10,13 @@ var {
 
 var docRouter = express.Router();
 
-// getting own details driver
-docRouter.get("/me", isSignedIn, isDriver, getDoctorOwnDetails);
-// editting own details driver
-docRouter.put("/me", isSignedIn, isDriver, editDoctorDetails);
-// get all drivers
+// getting own details doctor
+docRouter.get("/me", isSignedIn, isDoctor, getDoctorOwnDetails);
+// editting own details doctor
+docRouter.put("/me", isSignedIn, isDoctor, editDoctorDetails);
+// get all doctors
 docRouter.get("/", isSignedIn, isAdmin, getAllDoctors);
-// getting driver details
+// getting doctors details
 docRouter.get("/:doctorId", isSignedIn, isAdmin, getDoctorDetails);
 // editting details by admin
 docRouter.put("/:doctorId", isSignedIn, isAdmin, editDoctorDetails);
