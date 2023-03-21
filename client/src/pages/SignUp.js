@@ -31,8 +31,18 @@ const SignUp = () => {
   //when all the step are completed
   const finalSubmit = () => {
     setLoading(true);
+    const { name, email, password, adhaar, dob, phone, ...addr } = userDetails;
+    const details = {
+      name,
+      email,
+      password,
+      adhaar,
+      dob,
+      phone,
+      addr,
+    };
     //calling register user api
-    return registerUser(userDetails)
+    return registerUser(details)
       .then((res) => {
         //if successfully created user
         if (res.success) {
