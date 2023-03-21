@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 //set auth token in local storage
 export const setAuthTokenInLocalStorage = (token, cb) => {
   if (typeof window !== undefined) {
-    window.localStorage.setItem("jwt", JSON.stringify(token));
+    window.localStorage.setItem("jwt", token);
     cb();
   }
 };

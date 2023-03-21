@@ -12,7 +12,6 @@ import { UserProvider } from "./Contexts/UserContext";
 import SignUp from "./pages/SignUp";
 import AdminComp from "./AdminComp";
 import PageNotFound from "./pages/PageNotFound";
-import PrivateRoute from "./helper";
 
 function App() {
   return (
@@ -28,11 +27,7 @@ function App() {
             <Route exact path="/driverlogin" component={DriverLogin} />
           </DriverProvider>
           <UserProvider>
-            <PrivateRoute
-              exact
-              path="/userdashboard"
-              component={UserDashboard}
-            />
+            <Route exact path="/userdashboard" component={UserDashboard} />
           </UserProvider>
         </SocketProvider>
         <Route path="/" component={PageNotFound} />

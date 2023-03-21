@@ -3,16 +3,7 @@ var User = require("../models/user");
 exports.getOwnDetails = (req, res) => {
   // extracting data saved by isVerified middleware
   const data = req.root._doc;
-  return res.status(200).json({
-    name: data.name,
-    adhaar: data.adhaar,
-    email: data.email,
-    phone: data.phone,
-    addr: data.addr,
-    dob: data.dob,
-    bloodGrp: data.bloodGrp,
-    medHist: data.medHist,
-  });
+  return res.status(200).json(req.root._doc);
 };
 
 exports.editOwnDetails = (req, res) => {
