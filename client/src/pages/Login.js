@@ -28,6 +28,7 @@ const Login = (props) => {
       //if login ok
       if (res.success) {
         setLoading(false);
+        console.log(res);
         //set token in local storage
         setAuthTokenInLocalStorage(res.token, () => {
           setRedirect(true);
