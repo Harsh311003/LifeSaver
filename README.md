@@ -12,7 +12,6 @@ LifeSaver is webapp which automates the process of finding nearest availble ambu
   5) Materialize CSS
 
 ## Contributors:
-Team Name :- brute_force
 
 
 * [Harsh Kumar Sharma](https://github.com/Harsh311003)
