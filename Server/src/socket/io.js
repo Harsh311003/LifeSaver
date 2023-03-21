@@ -10,7 +10,6 @@ var {
   addUser,
   removeUser, 
   updateUserLocation, 
-  users
 } = require("./users");
 
 const {
@@ -53,7 +52,7 @@ exports.socketServer = (io) => {
     /*For Users*/
 
     socket.on("addUser", (details) => {
-      const {error, user} = addUser(details); 
+      const {error, user} = addUser(socket.id, details); 
 
       if (error) {
         socket.emit("errorMessage", { error: error, success: false });
@@ -80,6 +79,8 @@ exports.socketServer = (io) => {
 
       const {error, ambulance} = getShortestPathAmbulance(nearByAmbulances);
 
+      //Review it
+
       if (error) {
         socket.emit("errorMessage", { error: error, success: false });
       } else {
@@ -92,7 +93,10 @@ exports.socketServer = (io) => {
     })
 
     socket.on("disconnect", () => {
-      /*Disconnecting user remaining*/
+      const removedUser = removeUser(socket.id);
+      if(removedUser !== undefined){
+        console.log("Removed user!");
+      }
 
       const removedAmbulance = removeAmbulance(socket.id);
       if (removedAmbulance !== undefined)
