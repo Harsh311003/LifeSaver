@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Map from "./components/Map";
 import Login from "./pages/Login";
 
 import DriverDashboard from "./components/DriverDashboard";
@@ -12,9 +11,6 @@ import { UserProvider } from "./Contexts/UserContext";
 import SignUp from "./pages/SignUp";
 import AdminComp from "./AdminComp";
 import PageNotFound from "./pages/PageNotFound";
-import PrivateRoute from "./helper";
-import DocHome from "./pages/DocHome";
-import DocDash from "./pages/DocDash";
 
 function App() {
   return (
@@ -24,19 +20,13 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/admin" component={AdminComp} />
-        <Route exact path="/doc" component={DocHome} />
-        <Route exact path="/doc/dasbhoard" component={DocDash} />
         <SocketProvider>
           <DriverProvider>
             <Route exact path="/driverdashboard" component={DriverDashboard} />
             <Route exact path="/driverlogin" component={DriverLogin} />
           </DriverProvider>
           <UserProvider>
-            <PrivateRoute
-              exact
-              path="/userdashboard"
-              component={UserDashboard}
-            />
+            <Route exact path="/userdashboard" component={UserDashboard} />
           </UserProvider>
         </SocketProvider>
         <Route path="/" component={PageNotFound} />
