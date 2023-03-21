@@ -16,9 +16,10 @@ exports.UserSingup = (req, res) => {
 
       // creating new user
       var newUser = new User({
-        name: req.body.name,
-        adhaar: req.body.adhaar,
-        password: req.body.password,
+        ...req.body
+        // name: req.body.name,
+        // adhaar: req.body.adhaar,
+        // password: req.body.password,
       });
       newUser
         .save()
