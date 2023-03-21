@@ -16,4 +16,23 @@ const addUser = ({ id, gps, phone }) => {
   return { user };
 };
 
-module.exports = { addUser };
+const removeUser = (id) => {
+  const index = users.findIndex(
+    (user) => user.id == id
+  );
+  if (index !== -1) return users.splice(index, 1)[0];
+};
+
+const updateUserLocation = (id, gps) => {
+  const index = users.findIndex((user) => user.id === id);
+  if(users[index]){
+    user[index].gps = gps;
+  }
+}
+
+module.exports = {
+  addUser,
+  removeUser, 
+  updateUserLocation, 
+  users
+};
